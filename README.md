@@ -22,13 +22,13 @@ Model validation for Laravel applications. An easy validator option for your Elo
 
 ## Installation
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/opscale/validations.svg?style=flat-square)](https://packagist.org/packages/opscale/validations)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/opscale-co/validations.svg?style=flat-square)](https://packagist.org/packages/opscale-co/validations)
 
 You can install the package via composer:
 
 ```bash
 
-composer require opscale/validations
+composer require opscale-co/validations
 
 ```
 
