@@ -1,17 +1,18 @@
 {
-    "name": "opscale/validations",
-    "description": "Model validation for Laravel application.",
-    "type": "library",
-    "license": "MIT",
-    "require": {
-        "laravel/framework": "^5.0|^6.20.26|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Opscale\\Validations\\": "src/"
-        }
-    },
-    "require-dev": {
-        "tightenco/duster": "^3.4"
+  "name": "opscale/validations",
+  "description": "Model validation for Laravel application.",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "laravel/framework": "^5.0|^6.20.26|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Opscale\\Validations\\": "src/"
     }
+  },
+  "require-dev": {
+    "tightenco/duster": "^3.4"
+  },
+  "version": "1.0.0"
 }
