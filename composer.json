@@ -1,5 +1,5 @@
 {
-    "name": "opscale/validations",
+    "name": "opscale-co/validations",
     "description": "Model validation for Laravel application.",
     "type": "library",
     "license": "MIT",
