@@ -1,15 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Opscale\Validations;
+
+use Illuminate\Database\Eloquent\Model;
+use Opscale\Validations\Exceptions\MissingValidationRulesException;
 
 trait Validatable
 {
     /**
      * Alias method for calling the validate method on saving the model.
      */
-    public static function validateOnSaving()
+    public static function validateOnSaving(): void
     {
-        static::saving(function ($model) {
+        static::saving(function (Model $model): void {
             $model->validate();
         });
     }
@@ -17,28 +22,38 @@ trait Validatable
     /**
      * Alias method for calling the validate method on creating the model.
      */
-    public static function validateOnCreating()
+    public static function validateOnCreating(): void
     {
-        static::creating(function ($model) {
+        static::creating(function (Model $model): void {
             $model->validate();
         });
+    }
+
+    private static function hasValidationRulesDefined(): bool
+    {
+        if (method_exists(static::class, 'validationRules')) {
+            return true;
+        }
+
+        return property_exists(static::class, 'validationRules');
     }
 
     /**
      * Calls the validator instance to validate
      * Also runs the beforeValidation and afterValidation methods if exists.
      */
-    public function validate()
+    public function validate(): void
     {
-        // Runs the logic that might be executed before the model validation
+        if (! self::hasValidationRulesDefined()) {
+            throw MissingValidationRulesException::for(static::class);
+        }
+
         if (method_exists($this, 'beforeValidation')) {
             $this->beforeValidation();
         }
 
-        // Model validation
         (new ModelValidator($this))->validate();
 
-        // Runs the logic that might be executed after the model validation
         if (method_exists($this, 'afterValidation')) {
             $this->afterValidation();
         }
