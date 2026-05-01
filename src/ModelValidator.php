@@ -1,55 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Opscale\Validations;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
-/**
- * Class ModelValidator.
- */
 class ModelValidator
 {
-    /**
-     * The model object to validate.
-     */
     protected Model $model;
 
-    /**
-     * The data to be validated.
-     */
+    /** @var array<string, mixed> */
     protected array $data;
 
-    /**
-     * The rules to be applied to the data.
-     */
+    /** @var array<string, mixed> */
     protected array $rules;
 
-    /**
-     * The array of custom error messages.
-     */
+    /** @var array<string, string> */
     protected array $customMessages;
 
-    /**
-     * The array of custom attribute names.
-     */
+    /** @var array<string, string> */
     protected array $customAttributes;
 
-    /**
-     * ModelValidator constructor.
-     */
     public function __construct(Model $model)
     {
         $this->model = $model;
         $this->initialize();
     }
 
-    /**
-     * Initialize this class by setting up the needed params.
-     *
-     * @return $this
-     */
-    public function initialize()
+    public function initialize(): self
     {
         $this->customMessages = $this->getMessages();
         $this->customAttributes = $this->getAttributes();
@@ -59,14 +39,9 @@ class ModelValidator
         return $this;
     }
 
-    /**
-     * Validate the model params.
-     *
-     * @return $this
-     */
-    public function validate()
+    public function validate(): self
     {
-        if ($this->rules) {
+        if ($this->rules !== []) {
             Validator::make($this->data, $this->rules)
                 ->setCustomMessages($this->customMessages)
                 ->addCustomAttributes($this->customAttributes)
@@ -77,11 +52,9 @@ class ModelValidator
     }
 
     /**
-     * Get the validation messages.
-     *
-     * @return array
+     * @return array<string, string>
      */
-    protected function getMessages()
+    protected function getMessages(): array
     {
         if (method_exists($this->model, 'validationMessages')) {
             return $this->model->validationMessages();
@@ -97,11 +70,9 @@ class ModelValidator
     }
 
     /**
-     * Get the validation attributes.
-     *
-     * @return array
+     * @return array<string, string>
      */
-    protected function getAttributes()
+    protected function getAttributes(): array
     {
         if (method_exists($this->model, 'validationAttributes')) {
             return $this->model->validationAttributes();
@@ -117,15 +88,14 @@ class ModelValidator
     }
 
     /**
-     * Get the validation rules resolved for the current operation.
+     * Resolve validation rules for the current operation.
      *
-     * Rules can be defined as:
-     *   - A string: applies to both create and update.
-     *   - An array with 'create' and/or 'update' keys: applies conditionally.
+     * Rules may be a flat `field => rule` array, or a per-context array
+     * `field => ['create' => ..., 'update' => ...]` resolved from `$model->exists`.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    protected function getRules()
+    protected function getRules(): array
     {
         if (method_exists($this->model, 'validationRules')) {
             $rules = $this->model->validationRules();
@@ -157,11 +127,9 @@ class ModelValidator
     }
 
     /**
-     * Get the validation data.
-     *
-     * @return array
+     * @return array<string, mixed>
      */
-    protected function getData()
+    protected function getData(): array
     {
         $data = $this->model->getAttributes();
         if (method_exists($this->model, 'validationData')) {
