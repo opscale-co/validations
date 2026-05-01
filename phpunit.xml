@@ -11,9 +11,9 @@
          failOnWarning="true"
          colors="true"
          displayDetailsOnTestsThatTriggerDeprecations="false"
-         displayDetailsOnTestsThatTriggerErrors="false"
+         displayDetailsOnTestsThatTriggerErrors="true"
          displayDetailsOnTestsThatTriggerNotices="false"
-         displayDetailsOnTestsThatTriggerWarnings="false"
+         displayDetailsOnTestsThatTriggerWarnings="true"
          displayDetailsOnPhpunitDeprecations="false"
          processIsolation="false"
          stopOnFailure="false"
@@ -22,10 +22,27 @@
          stopOnSkipped="false"
          stopOnRisky="false"
          testdox="false">
-    
     <testsuites>
-        <testsuite name="Validations Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </source>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:b3BzY2FsZS12YWxpZGF0aW9ucy10ZXN0LWtleS0xMjM0NTY="/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="DB_CONNECTION" value="testbench"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+    </php>
 </phpunit>

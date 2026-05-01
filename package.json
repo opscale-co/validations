@@ -4,7 +4,13 @@
     "prepare": "husky",
     "lint": "vendor/bin/duster lint --dirty",
     "fix": "vendor/bin/duster fix",
-    "test": "vendor/bin/phpunit tests"
+    "refactor": "vendor/bin/rector process",
+    "analyse": "vendor/bin/phpstan analyse --memory-limit=512M",
+    "test": "vendor/bin/pest --testsuite=Unit,Feature",
+    "test:unit": "vendor/bin/pest --testsuite=Unit",
+    "test:feature": "vendor/bin/pest --testsuite=Feature",
+    "test:coverage": "XDEBUG_MODE=coverage vendor/bin/pest --testsuite=Unit,Feature --coverage --min=80",
+    "check": "npm run fix && npm run refactor && npm run lint && npm run analyse && npm run test"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",

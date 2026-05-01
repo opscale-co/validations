@@ -11,8 +11,25 @@
       "Opscale\\Validations\\": "src/"
     }
   },
-  "require-dev": {
-    "tightenco/duster": "^3.4"
+  "autoload-dev": {
+    "psr-4": {
+      "Opscale\\Validations\\Tests\\": "tests/"
+    }
   },
-  "version": "1.0.0"
+  "require-dev": {
+    "tightenco/duster": "^3.4",
+    "pestphp/pest": "^4.6",
+    "pestphp/pest-plugin-laravel": "^4.1",
+    "orchestra/testbench": "^10.11",
+    "mockery/mockery": "^1.6",
+    "larastan/larastan": "^3.9",
+    "opscale-co/strict-rules": "^1.1",
+    "rector/rector": "^2.4"
+  },
+  "version": "1.0.0",
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
 }

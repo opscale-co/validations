@@ -1,0 +1,23 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/opscale-co/strict-rules/rules.clean.neon
+    - vendor/opscale-co/strict-rules/rules.ddd.neon
+    - vendor/opscale-co/strict-rules/rules.smells.neon
+    - vendor/opscale-co/strict-rules/rules.solid.neon
+
+parameters:
+    level: 8
+    phpVersion: 80300
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/fixtures/*
+    ignoreErrors:
+        # Tests use direct instantiation, helpers, and dynamic property access on doubles.
+        -
+            identifier: solid.dip.disallowInstantiation
+            path: tests/*
+        -
+            identifier: smells.helpersRestriction.helper
+            path: tests/*
