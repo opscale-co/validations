@@ -26,7 +26,7 @@
     "opscale-co/strict-rules": "^1.1",
     "rector/rector": "^2.0"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "config": {
     "allow-plugins": {
       "pestphp/pest-plugin": true
