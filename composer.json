@@ -4,7 +4,7 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "laravel/framework": "^5.0|^6.20.26|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
+    "laravel/framework": "^13.0"
   },
   "autoload": {
     "psr-4": {
@@ -17,14 +17,14 @@
     }
   },
   "require-dev": {
-    "tightenco/duster": "^3.4",
-    "pestphp/pest": "^4.6",
-    "pestphp/pest-plugin-laravel": "^4.1",
-    "orchestra/testbench": "^10.11",
+    "tightenco/duster": "^3.0",
+    "pestphp/pest": "^4.0",
+    "pestphp/pest-plugin-laravel": "^4.0",
+    "orchestra/testbench": "^11.0",
     "mockery/mockery": "^1.6",
     "larastan/larastan": "^3.9",
     "opscale-co/strict-rules": "^1.1",
-    "rector/rector": "^2.4"
+    "rector/rector": "^2.0"
   },
   "version": "1.0.0",
   "config": {
